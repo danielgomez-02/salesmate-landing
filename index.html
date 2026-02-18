@@ -1,0 +1,1822 @@
+<!DOCTYPE html>
+<html lang="es" data-lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales Mate — Intelligent Sales Orchestration by Yalo</title>
+<meta name="description" content="Sales Mate by Yalo: The intelligent orchestrator for CPG field sales teams. Unify data, automate workflows, and gain real-time visibility.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   YALO DESIGN SYSTEM — Sales Mate Landing
+   Inspired by yalo.ai/oris
+   ============================================ */
+:root {
+  /* Yalo core palette */
+  --dark: #0E151C;
+  --dark-800: #141D26;
+  --dark-700: #1A2530;
+  --dark-600: #243240;
+  --cream: #FAF8F4;
+  --cream-dark: #F2EFE9;
+  --cream-100: #F9F9FA;
+  --blue: #373AF1;
+  --blue-hover: #484BFF;
+  --blue-light: #486CE9;
+  --cyan: #00C2EE;
+  --purple: #D75DFF;
+  --gold: #EDAE3E;
+  --white: #FFFFFF;
+  --text-dark: #0E151C;
+  --text-muted: #8B8A89;
+  --text-light: #B8B7B5;
+  --text-cream: #6B6A68;
+  --border-dark: rgba(255,255,255,0.06);
+  --border-cream: rgba(14,21,28,0.08);
+  /* Fonts */
+  --font-display: 'Sora', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  /* Gradient */
+  --gradient-accent: linear-gradient(135deg, #00C2EE, #D75DFF 52%, #EDAE3E);
+  --gradient-accent-r: linear-gradient(135deg, #EDAE3E, #D75DFF 48%, #00C2EE);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--dark);
+  color: var(--text-light);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========== GRADIENT TEXT UTILITY ========== */
+.gradient-text {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========== SCROLL ANIMATIONS ========== */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.08s; }
+.reveal-d2 { transition-delay: 0.16s; }
+.reveal-d3 { transition-delay: 0.24s; }
+.reveal-d4 { transition-delay: 0.32s; }
+.reveal-d5 { transition-delay: 0.4s; }
+
+/* ========== COSMIC STARS BG ========== */
+.cosmic-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 45%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 15%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 85% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 80%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 85%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 90% 10%, rgba(255,255,255,0.45) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 95%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 5%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 55%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(1.2px 1.2px at 5% 50%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 95% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 35%, rgba(255,255,255,0.2) 0%, transparent 100%);
+}
+
+/* ========== ORBITAL DECORATIONS ========== */
+.orbital {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(255,255,255,0.06);
+  pointer-events: none;
+}
+.orbital-cream {
+  border-color: rgba(14,21,28,0.06);
+}
+
+/* ========== NAVIGATION ========== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 1.1rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(24px) saturate(1.2);
+  background: rgba(14, 21, 28, 0.65);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: all 0.35s ease;
+}
+nav.scrolled {
+  padding: 0.7rem 2.5rem;
+  background: rgba(14, 21, 28, 0.92);
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.nav-logo svg { height: 26px; width: auto; }
+.nav-logo-sub {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 1px solid rgba(255,255,255,0.12);
+  line-height: 1;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: color 0.25s;
+}
+.nav-links a:hover { color: var(--white); }
+
+.lang-switcher {
+  display: flex;
+  gap: 2px;
+  background: var(--dark-700);
+  border-radius: 10px;
+  padding: 3px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 5px 11px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s;
+  letter-spacing: 0.04em;
+}
+.lang-btn.active {
+  background: var(--blue);
+  color: var(--white);
+}
+.lang-btn:hover:not(.active) { color: var(--white); }
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--text-light);
+  margin: 5px 0;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+/* ========== HERO ========== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 2rem 6rem;
+  background: var(--dark);
+  text-align: left;
+  overflow: hidden;
+}
+/* Glowing orbs behind hero */
+.hero-glow-1 {
+  position: absolute;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 194, 238, 0.08), transparent 65%);
+  top: -15%; right: -10%;
+  filter: blur(80px);
+  animation: glowDrift 14s ease-in-out infinite;
+}
+.hero-glow-2 {
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(215, 93, 255, 0.06), transparent 65%);
+  bottom: 5%; left: -8%;
+  filter: blur(80px);
+  animation: glowDrift 14s ease-in-out infinite reverse;
+}
+.hero-glow-3 {
+  position: absolute;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(237, 174, 62, 0.05), transparent 65%);
+  top: 30%; left: 40%;
+  filter: blur(80px);
+  animation: glowDrift 10s ease-in-out infinite;
+  animation-delay: -5s;
+}
+@keyframes glowDrift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(25px, -15px) scale(1.03); }
+  66% { transform: translate(-15px, 15px) scale(0.97); }
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+@media (max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-text {
+    align-items: center;
+  }
+  .hero-ctas {
+    justify-content: center !important;
+  }
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  background: rgba(55, 58, 241, 0.08);
+  border: 1px solid rgba(55, 58, 241, 0.2);
+  border-radius: 100px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--blue-light);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+.hero-tag .dot {
+  width: 6px; height: 6px;
+  background: var(--cyan);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--white);
+  margin-bottom: 1.8rem;
+}
+.hero h1 .accent {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-desc {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin: 0 0 2.5rem;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 15px 36px;
+  background: var(--blue);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.01em;
+}
+.btn-primary:hover {
+  background: var(--blue-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(55, 58, 241, 0.3);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 15px 36px;
+  background: transparent;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 100px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.btn-outline:hover {
+  border-color: var(--white);
+  background: rgba(255,255,255,0.04);
+}
+
+/* Hero interactive card */
+.hero-card-wrapper {
+  max-width: 460px;
+  margin: 0 auto;
+  position: relative;
+}
+@media (max-width: 900px) {
+  .hero-card-wrapper {
+    margin: 2rem auto 0;
+  }
+}
+.hero-card {
+  background: var(--dark-800);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 24px;
+  padding: 2rem;
+  text-align: left;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gradient-accent);
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.4rem;
+}
+.card-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card-avatar {
+  width: 38px; height: 38px;
+  background: var(--gradient-accent);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+.card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--white);
+}
+.card-subtitle {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.card-badge {
+  padding: 4px 12px;
+  background: rgba(0, 194, 238, 0.1);
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  border-radius: 100px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.card-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 1.4rem;
+}
+.metric-box {
+  background: rgba(14, 21, 28, 0.6);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 14px;
+  padding: 14px 10px;
+  text-align: center;
+}
+.metric-value {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.35rem;
+  color: var(--white);
+  line-height: 1;
+}
+.metric-value.cyan { color: var(--cyan); }
+.metric-value.gold { color: var(--gold); }
+.metric-label {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.card-tasks { display: flex; flex-direction: column; gap: 7px; }
+.task-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: rgba(14, 21, 28, 0.5);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.03);
+  transition: border-color 0.25s;
+}
+.task-row:hover { border-color: rgba(55, 58, 241, 0.2); }
+.task-icon {
+  width: 30px; height: 30px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+.task-icon.ti-cyan { background: rgba(0, 194, 238, 0.12); }
+.task-icon.ti-blue { background: rgba(55, 58, 241, 0.12); }
+.task-icon.ti-gold { background: rgba(237, 174, 62, 0.12); }
+.task-name {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  flex: 1;
+}
+.task-status {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  padding: 3px 9px;
+  border-radius: 100px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+.task-status.done { background: rgba(0, 194, 238, 0.12); color: var(--cyan); }
+.task-status.pending { background: rgba(237, 174, 62, 0.12); color: var(--gold); }
+.task-status.progress { background: rgba(215, 93, 255, 0.12); color: var(--purple); }
+
+/* Floating badges */
+.floating-badge {
+  position: absolute;
+  background: var(--dark-800);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  animation: floatBadge 5s ease-in-out infinite;
+  backdrop-filter: blur(12px);
+}
+.floating-badge-1 { top: 10px; right: -50px; animation-delay: 0s; }
+.floating-badge-2 { bottom: 40px; left: -50px; animation-delay: -2.5s; }
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.fb-icon {
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+.fb-text {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--white);
+}
+.fb-sub {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+}
+
+/* ========== SECTION COMMON ========== */
+section { padding: 7rem 2rem; position: relative; }
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* Dark section */
+.section-dark {
+  background: var(--dark);
+  color: var(--text-light);
+}
+/* Cream section */
+.section-cream {
+  background: var(--cream);
+  color: var(--text-dark);
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.section-tag-dark { color: var(--cyan); }
+.section-tag-dark::before {
+  content: '';
+  width: 24px; height: 2px;
+  background: var(--gradient-accent);
+  border-radius: 2px;
+}
+.section-tag-cream { color: var(--blue); }
+.section-tag-cream::before {
+  content: '';
+  width: 24px; height: 2px;
+  background: var(--blue);
+  border-radius: 2px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+.section-title-dark { color: var(--white); }
+.section-title-cream { color: var(--text-dark); }
+
+.section-desc {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 600px;
+}
+.section-desc-dark { color: var(--text-muted); }
+.section-desc-cream { color: var(--text-cream); }
+
+/* ========== PROBLEM (Cream) ========== */
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.pain-card {
+  background: var(--white);
+  border: 1px solid var(--border-cream);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+.pain-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gradient-accent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.pain-card:hover::before { opacity: 1; }
+.pain-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(14, 21, 28, 0.08);
+}
+.pain-number {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.25;
+}
+.pain-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  margin-bottom: 0.6rem;
+}
+.pain-desc {
+  font-size: 0.9rem;
+  color: var(--text-cream);
+  line-height: 1.6;
+}
+
+/* ========== STATS BAR (Dark) ========== */
+.stats-bar {
+  background: var(--dark-800);
+  border-top: 1px solid var(--border-dark);
+  border-bottom: 1px solid var(--border-dark);
+  padding: 4.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.stats-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.stat-number {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat-label {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+/* ========== DEMO VIDEO (Cream) ========== */
+.demo-player {
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(14, 21, 28, 0.1);
+}
+.demo-placeholder {
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, var(--dark) 0%, var(--dark-700) 100%);
+  border: 2px dashed rgba(255,255,255,0.12);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.demo-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 50%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 20%, rgba(255,255,255,0.25) 0%, transparent 100%);
+}
+.demo-placeholder:hover {
+  border-color: rgba(55, 58, 241, 0.3);
+  box-shadow: inset 0 0 60px rgba(55, 58, 241, 0.05);
+}
+.demo-placeholder:hover .demo-play-btn {
+  transform: scale(1.1);
+  background: var(--blue-hover);
+}
+.demo-play-btn {
+  width: 72px; height: 72px;
+  background: var(--blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 8px 40px rgba(55, 58, 241, 0.4);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.demo-play-btn svg { margin-left: 3px; }
+.demo-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--white);
+  position: relative;
+  z-index: 1;
+}
+.demo-sublabel {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  position: relative;
+  z-index: 1;
+}
+/* When video/gif is loaded */
+.demo-placeholder.has-media {
+  border: none;
+  cursor: default;
+}
+.demo-placeholder.has-media .demo-play-btn,
+.demo-placeholder.has-media .demo-label,
+.demo-placeholder.has-media .demo-sublabel,
+.demo-placeholder.has-media::before { display: none; }
+.demo-placeholder.has-media video,
+.demo-placeholder.has-media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+/* ========== JOURNEY (Dark) ========== */
+.journey-flow {
+  display: flex;
+  gap: 0;
+  margin-top: 3rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scrollbar-width: none;
+}
+.journey-flow::-webkit-scrollbar { display: none; }
+.journey-step {
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+  text-align: center;
+  padding: 2rem 1.2rem;
+}
+.journey-step::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 50%;
+  width: 32px; height: 2px;
+  background: linear-gradient(90deg, var(--cyan), transparent);
+  opacity: 0.3;
+}
+.journey-step:last-child::after { display: none; }
+.step-icon {
+  width: 58px; height: 58px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin: 0 auto 1rem;
+  position: relative;
+}
+.step-icon::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.step-icon.s1 { background: rgba(55, 58, 241, 0.12); }
+.step-icon.s2 { background: rgba(0, 194, 238, 0.12); }
+.step-icon.s3 { background: rgba(215, 93, 255, 0.12); }
+.step-icon.s4 { background: rgba(237, 174, 62, 0.12); }
+.step-icon.s5 { background: rgba(55, 58, 241, 0.12); }
+.step-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+.step-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+.step-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* ========== FEATURES (Cream) ========== */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.feature-card {
+  background: var(--white);
+  border: 1px solid var(--border-cream);
+  border-radius: 20px;
+  padding: 2.2rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(14, 21, 28, 0.06);
+}
+/* All feature cards equal size in 3x2 grid */
+.feature-icon {
+  width: 50px; height: 50px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+}
+.fi-blue { background: rgba(55, 58, 241, 0.08); }
+.fi-cyan { background: rgba(0, 194, 238, 0.08); }
+.fi-purple { background: rgba(215, 93, 255, 0.08); }
+.fi-gold { background: rgba(237, 174, 62, 0.08); }
+.fi-green { background: rgba(34, 197, 94, 0.08); }
+.fi-pink { background: rgba(236, 72, 153, 0.08); }
+.feature-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.12rem;
+  color: var(--text-dark);
+  margin-bottom: 0.55rem;
+}
+.feature-desc {
+  font-size: 0.9rem;
+  color: var(--text-cream);
+  line-height: 1.6;
+}
+
+/* ========== CHANNELS (Dark) ========== */
+.channels-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.channel-card {
+  background: var(--dark-800);
+  border: 1px solid var(--border-dark);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+.channel-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(55, 58, 241, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+.channel-icon {
+  width: 64px; height: 64px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin: 0 auto 1.5rem;
+  position: relative;
+}
+.channel-icon::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 26px;
+  border: 1px dashed rgba(255,255,255,0.08);
+}
+.ci-cyan { background: rgba(0, 194, 238, 0.1); }
+.ci-green { background: rgba(34, 197, 94, 0.1); }
+.ci-purple { background: rgba(215, 93, 255, 0.1); }
+.channel-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.12rem;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+.channel-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.channel-tags {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.channel-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  padding: 4px 11px;
+  background: rgba(55, 58, 241, 0.08);
+  border: 1px solid rgba(55, 58, 241, 0.15);
+  border-radius: 100px;
+  color: var(--blue-light);
+  letter-spacing: 0.03em;
+}
+
+/* ========== CTA (Dark cosmic) ========== */
+.cta-section {
+  position: relative;
+  padding: 8rem 2rem;
+  text-align: center;
+  overflow: hidden;
+  background: var(--dark);
+}
+.cta-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+}
+.cta-glow-1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(55, 58, 241, 0.1), transparent);
+  top: -25%; left: 15%;
+}
+.cta-glow-2 {
+  width: 450px; height: 450px;
+  background: radial-gradient(circle, rgba(215, 93, 255, 0.06), transparent);
+  bottom: -20%; right: 10%;
+}
+.cta-content { position: relative; z-index: 2; }
+.cta-section .section-title {
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  max-width: 700px;
+  margin: 0 auto 1rem;
+  color: var(--white);
+}
+.cta-section .section-desc {
+  max-width: 500px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ========== FOOTER (Dark) ========== */
+footer {
+  padding: 3rem 2rem;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  background: var(--dark);
+}
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.footer-logo svg { height: 22px; width: auto; }
+.footer-logo-sub {
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding-left: 8px;
+  border-left: 1px solid rgba(255,255,255,0.1);
+}
+.footer-text {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.footer-yalo {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.footer-yalo a {
+  color: var(--blue-light);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-yalo a:hover { color: var(--cyan); }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+  .features-grid { grid-template-columns: 1fr 1fr; }
+  .channels-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  nav { padding: 0.8rem 1.2rem; }
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--dark);
+    border-bottom: 1px solid var(--border-dark);
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+  .nav-toggle { display: block; }
+  .hero { padding: 6rem 1.5rem 3rem; min-height: auto; }
+  .hero h1 { font-size: clamp(1.9rem, 6.5vw, 2.8rem); }
+  .hero-card-wrapper { max-width: 360px; }
+  .floating-badge { display: none; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: 1fr; }
+  .channels-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .journey-flow { flex-direction: column; align-items: center; }
+  .journey-step::after { display: none; }
+  section { padding: 4.5rem 1.5rem; }
+  .footer-content { flex-direction: column; gap: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <svg width="76" height="36" viewBox="0 0 76 36" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50.2644 0.180664H44.4412V26.2813H50.2702V0.180664H50.2644Z" fill="white"/><path d="M33.5053 5.63477C27.2545 5.63477 24.7877 8.65037 24.2909 12.856H29.8946C30.4203 11.1114 31.5642 10.4412 33.2569 10.4412C35.4752 10.4412 36.3938 11.6371 36.3938 13.8035V14.6527H31.1656C25.8392 14.6527 23.667 17.1657 23.667 20.8283C23.667 24.7856 26.3071 26.7036 29.7964 26.7036C33.2106 26.7036 35.4983 25.8544 36.3938 22.4228V26.2819H42.1708V13.7515C42.1708 8.59838 39.6347 5.63477 33.5053 5.63477ZM36.3938 18.5349C36.3938 20.5742 34.7762 22.0242 32.3094 22.0242C30.091 22.0242 29.3227 21.0536 29.3227 19.8058C29.3227 18.7082 30.3452 17.9398 32.0379 17.9398H36.3707V18.5349H36.3938Z" fill="white"/><path d="M63.4418 5.68582C60.6515 5.55873 57.9363 6.53504 55.8681 8.42413C53.7999 10.319 52.581 12.9302 52.4308 15.7205L52.3788 26.2578L62.9161 26.7546C64.2852 26.7546 65.6775 26.5062 66.9484 25.9574C68.2194 25.4317 69.3863 24.6633 70.3858 23.6928C71.3563 22.7223 72.1535 21.5495 72.6793 20.2786C73.205 19.0076 73.4996 17.6385 73.4996 16.2462C73.5227 13.531 72.4771 10.914 70.6111 8.94984C68.722 6.97987 66.157 5.80714 63.4418 5.68582ZM66.2032 19.4814C65.354 20.3537 64.187 20.8505 62.9623 20.8736L58.2078 20.6483L58.2309 15.8649C58.306 14.6922 58.8317 13.5715 59.6983 12.7742C60.5706 11.977 61.6913 11.5264 62.8872 11.5264C62.9623 11.5264 63.0374 11.5264 63.1125 11.5264C64.3083 11.5784 65.4522 12.0983 66.2783 12.9706C67.0986 13.843 67.5724 15.0099 67.5724 16.2058C67.5493 17.4421 67.0524 18.609 66.2032 19.4814Z" fill="white"/><path d="M9.94658 27.0029C13.0835 27.0029 15.1286 25.8302 16.2724 24.4379L16.2955 26.2288C16.2955 29.0653 14.7993 30.7118 12.2112 30.7118C10.6167 30.7118 9.9928 30.1861 9.51908 29.0942H3.39544C3.69584 30.342 4.36598 32.0578 5.81023 33.427C7.47979 34.9983 9.77327 35.8187 12.6329 35.8187C15.4463 35.8187 17.8149 34.9001 19.4787 33.1786C21.0731 31.509 21.9455 29.2444 21.9455 26.5812V6.65625H16.1222V17.2398C16.1222 18.4876 15.7756 19.4581 15.0997 20.1514C15.0766 20.1745 15.0477 20.2265 15.0015 20.2496C14.9784 20.2727 14.9264 20.3247 14.9033 20.3478L14.8802 20.3709C14.8282 20.394 14.8051 20.446 14.7531 20.4691C14.7011 20.4922 14.678 20.5211 14.626 20.5673C13.9501 21.0641 13.0546 21.3414 11.9628 21.3414C10.2701 21.3414 9.24756 20.6713 8.69875 19.5737C8.37523 18.9266 8.22503 18.1294 8.22503 17.2571V6.67936H2.5V18.1121C2.55199 23.4443 5.38851 27.0029 9.94658 27.0029Z" fill="white"/></svg>
+    <span class="nav-logo-sub">Sales Mate</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#problem" data-i18n="nav_problem">Oportunidad</a></li>
+    <li><a href="#demo" data-i18n="nav_demo">Demo</a></li>
+    <li><a href="#journey" data-i18n="nav_journey">Jornada</a></li>
+    <li><a href="#features" data-i18n="nav_features">Funcionalidades</a></li>
+    <li><a href="#channels" data-i18n="nav_channels">Canales</a></li>
+    <li>
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="pt">PT</button>
+      </div>
+    </li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ========== HERO (Dark cosmic) ========== -->
+<section class="hero" id="hero">
+  <div class="cosmic-bg">
+    <div class="stars"></div>
+    <div class="hero-glow-1"></div>
+    <div class="hero-glow-2"></div>
+    <div class="hero-glow-3"></div>
+    <!-- Orbital ellipses -->
+    <div class="orbital" style="width:800px;height:400px;top:10%;left:-15%;transform:rotate(-20deg);"></div>
+    <div class="orbital" style="width:600px;height:300px;top:25%;right:-10%;transform:rotate(15deg);"></div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-tag reveal">
+        <span class="dot"></span>
+        <span data-i18n="hero_tag">Desarrollado por Yalo</span>
+      </div>
+      <h1 class="reveal reveal-d1">
+        <span data-i18n="hero_title_1">Orquestación</span><br>
+        <span class="accent" data-i18n="hero_title_2">Inteligente</span><br>
+        <span data-i18n="hero_title_3">de Ventas en Campo</span>
+      </h1>
+      <p class="hero-desc reveal reveal-d2" data-i18n="hero_desc">
+        Unifica la estrategia comercial, automatiza tareas de campo y gana visibilidad en tiempo real. El orquestador que conecta metas con ejecución para equipos CPG enterprise.
+      </p>
+      <div class="hero-ctas reveal reveal-d3">
+        <a href="#journey" class="btn-outline" data-i18n="hero_cta2">Conocer más</a>
+      </div>
+    </div>
+
+    <!-- Interactive Card -->
+    <div class="hero-card-wrapper reveal reveal-d4">
+      <div class="hero-card">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 12h6M9 16h6"/></svg></div>
+            <div>
+              <div class="card-title" data-i18n="card_title">Plan del Día</div>
+              <div class="card-subtitle" data-i18n="card_subtitle">8 tiendas · 12 misiones</div>
+            </div>
+          </div>
+          <span class="card-badge" data-i18n="card_badge">EN RUTA</span>
+        </div>
+        <div class="card-metrics">
+          <div class="metric-box">
+            <div class="metric-value cyan">87%</div>
+            <div class="metric-label" data-i18n="metric_exec">Ejecución</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-value">6/8</div>
+            <div class="metric-label" data-i18n="metric_visits">Visitas</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-value gold">+12%</div>
+            <div class="metric-label" data-i18n="metric_sellout">Sell-out</div>
+          </div>
+        </div>
+        <div class="card-tasks">
+          <div class="task-row">
+            <div class="task-icon ti-cyan"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+            <span class="task-name" data-i18n="task_1">Verificar exhibición</span>
+            <span class="task-status done" data-i18n="status_done">HECHO</span>
+          </div>
+          <div class="task-row">
+            <div class="task-icon ti-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+            <span class="task-name" data-i18n="task_2">Pedido sugerido</span>
+            <span class="task-status progress" data-i18n="status_progress">EN CURSO</span>
+          </div>
+          <div class="task-row">
+            <div class="task-icon ti-gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+            <span class="task-name" data-i18n="task_3">Activar promo combo</span>
+            <span class="task-status pending" data-i18n="status_pending">PENDIENTE</span>
+          </div>
+        </div>
+      </div>
+      <div class="floating-badge floating-badge-1">
+        <div class="fb-icon" style="background:rgba(0,194,238,0.12)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/><circle cx="9" cy="13" r="1.25" fill="var(--cyan)" stroke="none"/><circle cx="15" cy="13" r="1.25" fill="var(--cyan)" stroke="none"/><path d="M8.5 17h7"/></svg></div>
+        <div>
+          <div class="fb-text" data-i18n="fb1_title">AI Photo Verify</div>
+          <div class="fb-sub" data-i18n="fb1_sub">Validación automática</div>
+        </div>
+      </div>
+      <div class="floating-badge floating-badge-2">
+        <div class="fb-icon" style="background:rgba(34,197,94,0.12)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+        <div>
+          <div class="fb-text">WhatsApp</div>
+          <div class="fb-sub" data-i18n="fb2_sub">Canal nativo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PROBLEM (Cream) ========== -->
+<section class="section-cream" id="problem">
+  <div class="container">
+    <div class="section-tag section-tag-cream reveal" data-i18n="problem_tag">La Oportunidad</div>
+    <h2 class="section-title section-title-cream reveal reveal-d1" data-i18n="problem_title">¿Y si cada visita de campo<br>generara el máximo impacto?</h2>
+    <p class="section-desc section-desc-cream reveal reveal-d2" data-i18n="problem_desc">
+      Los equipos enterprise gestionan múltiples apps y procesos manuales con visibilidad limitada. Sales Mate unifica todo en una experiencia inteligente.
+    </p>
+    <div class="problem-grid">
+      <div class="pain-card reveal reveal-d1">
+        <div class="pain-number">01</div>
+        <div class="pain-title" data-i18n="pain1_title">Múltiples Herramientas</div>
+        <div class="pain-desc" data-i18n="pain1_desc">Vendedores gestionan hasta 8 apps diferentes. Una experiencia unificada simplifica su jornada completa.</div>
+      </div>
+      <div class="pain-card reveal reveal-d2">
+        <div class="pain-number">02</div>
+        <div class="pain-title" data-i18n="pain2_title">Procesos Manuales</div>
+        <div class="pain-desc" data-i18n="pain2_desc">Metas comunicadas por PDF, seguimiento en Excel. Una plataforma integrada elimina la fricción operativa.</div>
+      </div>
+      <div class="pain-card reveal reveal-d3">
+        <div class="pain-number">03</div>
+        <div class="pain-title" data-i18n="pain3_title">Visibilidad Limitada</div>
+        <div class="pain-desc" data-i18n="pain3_desc">Sin cruce entre ventas, visitas y promociones activas. Con datos conectados, las decisiones se toman a tiempo.</div>
+      </div>
+      <div class="pain-card reveal reveal-d4">
+        <div class="pain-number">04</div>
+        <div class="pain-title" data-i18n="pain4_title">Adopción Compleja</div>
+        <div class="pain-desc" data-i18n="pain4_desc">Los vendedores de campo necesitan simplicidad. Una sola herramienta intuitiva maximiza la adopción.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== STATS (Dark) ========== -->
+<div class="stats-bar">
+  <div class="cosmic-bg"><div class="stars" style="opacity:0.5"></div></div>
+  <div class="stats-grid">
+    <div class="stat-item reveal">
+      <div class="stat-number" data-i18n="stat1_num">8+</div>
+      <div class="stat-label" data-i18n="stat1_label">Apps que reemplaza</div>
+    </div>
+    <div class="stat-item reveal reveal-d1">
+      <div class="stat-number" data-i18n="stat2_num">3</div>
+      <div class="stat-label" data-i18n="stat2_label">Canales unificados</div>
+    </div>
+    <div class="stat-item reveal reveal-d2">
+      <div class="stat-number" data-i18n="stat3_num">100%</div>
+      <div class="stat-label" data-i18n="stat3_label">Visibilidad en tiempo real</div>
+    </div>
+    <div class="stat-item reveal reveal-d3">
+      <div class="stat-number" data-i18n="stat4_num">AI</div>
+      <div class="stat-label" data-i18n="stat4_label">Validación con visión artificial</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== DEMO VIDEO (Cream) ========== -->
+<section class="section-cream" id="demo" style="overflow:hidden;">
+  <div class="orbital orbital-cream" style="width:600px;height:300px;bottom:-20%;right:-10%;transform:rotate(12deg);"></div>
+  <div class="container" style="position:relative;z-index:2;">
+    <div style="text-align:center;max-width:700px;margin:0 auto;">
+      <div class="section-tag section-tag-cream reveal" data-i18n="demo_tag">Demo en Vivo</div>
+      <h2 class="section-title section-title-cream reveal reveal-d1" data-i18n="demo_title">Mira Sales Mate<br>en acción</h2>
+      <p class="section-desc section-desc-cream reveal reveal-d2" style="margin:0 auto 3rem;" data-i18n="demo_desc">
+        Descubre cómo nuestro orquestador inteligente transforma la ejecución diaria de los equipos de campo.
+      </p>
+    </div>
+    <div class="demo-player reveal reveal-d3">
+      <div class="demo-placeholder" id="demoPlaceholder">
+        <div class="demo-play-btn">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="white" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <div class="demo-label" data-i18n="demo_label">Video / GIF de Demo</div>
+        <div class="demo-sublabel" data-i18n="demo_sublabel">Arrastra tu archivo aquí o haz clic para cargar</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== JOURNEY (Dark) ========== -->
+<section class="section-dark" id="journey">
+  <div class="cosmic-bg">
+    <div class="stars" style="opacity:0.4"></div>
+    <div class="orbital" style="width:500px;height:250px;bottom:10%;right:-5%;transform:rotate(-12deg);"></div>
+  </div>
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="section-tag section-tag-dark reveal" data-i18n="journey_tag">Jornada Completa</div>
+    <h2 class="section-title section-title-dark reveal reveal-d1">
+      <span data-i18n="journey_title_1">De la estrategia al</span><br>
+      <span class="gradient-text" data-i18n="journey_title_2">resultado de negocio</span>
+    </h2>
+    <p class="section-desc section-desc-dark reveal reveal-d2" data-i18n="journey_desc">
+      Sales Mate orquesta todo el flujo: desde los objetivos corporativos hasta la ejecución validada en cada punto de venta.
+    </p>
+    <div class="journey-flow">
+      <div class="journey-step reveal reveal-d1">
+        <div class="step-icon s1"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue-light)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20v-4l2-1.5V10l-2-1V6l4-3h6l4 3v3l-2 1v4.5L19 16v4"/><circle cx="12" cy="4" r="1" fill="var(--blue-light)" stroke="none"/></svg></div>
+        <div class="step-label" data-i18n="j1_label">Embotelladora</div>
+        <div class="step-title" data-i18n="j1_title">Estrategia & Gobernanza</div>
+        <div class="step-desc" data-i18n="j1_desc">Misiones de ventas, ejecución y comunicación. Objetivos macro y reglas por vendedor.</div>
+      </div>
+      <div class="journey-step reveal reveal-d2">
+        <div class="step-icon s2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5c0 1.5.7 2.8 1.7 3.7L12 14l3.3-3.3A5 5 0 0 0 12 2z"/><path d="M9 14v2a3 3 0 0 0 6 0v-2"/><circle cx="10" cy="8" r="0.8" fill="var(--cyan)" stroke="none"/><circle cx="14" cy="8" r="0.8" fill="var(--cyan)" stroke="none"/><path d="M12 18v4"/><path d="M8 22h8"/></svg></div>
+        <div class="step-label">Sales Mate</div>
+        <div class="step-title" data-i18n="j2_title">Orquestación Inteligente</div>
+        <div class="step-desc" data-i18n="j2_desc">Genera tareas por tienda y vendedor. Prioriza por impacto y reglas de negocio.</div>
+      </div>
+      <div class="journey-step reveal reveal-d3">
+        <div class="step-icon s3"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+        <div class="step-label" data-i18n="j3_label">Vendedor / App</div>
+        <div class="step-title" data-i18n="j3_title">Plan de Campo</div>
+        <div class="step-desc" data-i18n="j3_desc">Visualiza tareas priorizadas. Ejecuta por tienda con evidencias en el PDV.</div>
+      </div>
+      <div class="journey-step reveal reveal-d4">
+        <div class="step-icon s4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div class="step-label" data-i18n="j4_label">Supervisor</div>
+        <div class="step-title" data-i18n="j4_title">Control & Performance</div>
+        <div class="step-desc" data-i18n="j4_desc">Monitorea ejecución y resultados. Validación automática + auditoría manual.</div>
+      </div>
+      <div class="journey-step reveal reveal-d5">
+        <div class="step-icon s5"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue-light)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
+        <div class="step-label">Output</div>
+        <div class="step-title" data-i18n="j5_title">Resultado de Negocio</div>
+        <div class="step-desc" data-i18n="j5_desc">Ejecución consistente, rastreabilidad punta a punta y aprendizaje continuo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FEATURES (Cream) ========== -->
+<section class="section-cream" id="features" style="position:relative;overflow:hidden;">
+  <!-- Orbital decoration -->
+  <div class="orbital orbital-cream" style="width:700px;height:350px;top:-10%;left:-15%;transform:rotate(10deg);"></div>
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="section-tag section-tag-cream reveal" data-i18n="features_tag">Funcionalidades</div>
+    <h2 class="section-title section-title-cream reveal reveal-d1" data-i18n="features_title">Inteligencia que potencia<br>cada acción en campo</h2>
+    <div class="features-grid">
+      <div class="feature-card reveal reveal-d1">
+        <div class="feature-icon fi-blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/><circle cx="12" cy="12" r="7" stroke-dasharray="4 2"/></svg></div>
+        <div class="feature-title" data-i18n="f1_title">Motor de Priorización Inteligente</div>
+        <div class="feature-desc" data-i18n="f1_desc">Algoritmo que recibe candidatas de tareas, las puntúa por impacto y asigna el conjunto óptimo a cada vendedor según reglas de capacidad y perfil de tienda.</div>
+      </div>
+      <div class="feature-card reveal reveal-d2">
+        <div class="feature-icon fi-cyan"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/><path d="M2 2l20 20" stroke-width="1.5"/></svg></div>
+        <div class="feature-title" data-i18n="f2_title">Verificación con AI Vision</div>
+        <div class="feature-desc" data-i18n="f2_desc">Validación automática de fotos en punto de venta con OpenAI y Google Gemini. Multi-proveedor con tracking de costos.</div>
+      </div>
+      <div class="feature-card reveal reveal-d2">
+        <div class="feature-icon fi-purple"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 16V10M12 16V8M16 16v-4"/></svg></div>
+        <div class="feature-title" data-i18n="f3_title">Dashboards en Tiempo Real</div>
+        <div class="feature-desc" data-i18n="f3_desc">Visibilidad instantánea de metas, visitas, ejecución y sell-out. Reportes por distribuidor, vendedor y tienda.</div>
+      </div>
+      <div class="feature-card reveal reveal-d3">
+        <div class="feature-icon fi-green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div class="feature-title" data-i18n="f4_title">Gamificación</div>
+        <div class="feature-desc" data-i18n="f4_desc">Sistema de puntos y logros que motiva a los vendedores a completar misiones de alto impacto.</div>
+      </div>
+      <div class="feature-card reveal reveal-d3">
+        <div class="feature-icon fi-gold"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M12 12v4"/><circle cx="12" cy="12" r="1" fill="var(--gold)" stroke="none"/></svg></div>
+        <div class="feature-title" data-i18n="f5_title">Whitelabel</div>
+        <div class="feature-desc" data-i18n="f5_desc">Cada marca despliega su propia experiencia con branding, colores e identidad totalmente personalizados.</div>
+      </div>
+      <div class="feature-card reveal reveal-d4">
+        <div class="feature-icon fi-pink"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="feature-title" data-i18n="f6_title">Multiidioma</div>
+        <div class="feature-desc" data-i18n="f6_desc">Soporte nativo en Español, Inglés y Portugués brasileño. Listo para operaciones en toda LATAM.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CHANNELS (Dark) ========== -->
+<section class="section-dark" id="channels" style="overflow:hidden;">
+  <div class="cosmic-bg">
+    <div class="stars" style="opacity:0.35"></div>
+    <div class="orbital" style="width:900px;height:450px;top:20%;left:-20%;transform:rotate(-8deg);"></div>
+    <div class="orbital" style="width:600px;height:300px;bottom:5%;right:-15%;transform:rotate(18deg);"></div>
+  </div>
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="section-tag section-tag-dark reveal" data-i18n="channels_tag">Canales</div>
+    <h2 class="section-title section-title-dark reveal reveal-d1">
+      <span data-i18n="channels_title_1">Donde tu equipo</span><br>
+      <span class="gradient-text" data-i18n="channels_title_2">ya trabaja</span>
+    </h2>
+    <p class="section-desc section-desc-dark reveal reveal-d2" data-i18n="channels_desc">
+      Sales Mate no agrega otra app. Se integra en los canales que los vendedores ya usan, reduciendo fricción y maximizando adopción.
+    </p>
+    <div class="channels-grid">
+      <div class="channel-card reveal reveal-d1">
+        <div class="channel-icon ci-cyan"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+        <div class="channel-title" data-i18n="ch1_title">WebView / PWA</div>
+        <div class="channel-desc" data-i18n="ch1_desc">Aplicación web progresiva embebible en cualquier app existente. Gestión de rutas, misiones guiadas y captura de fotos.</div>
+      </div>
+      <div class="channel-card reveal reveal-d2">
+        <div class="channel-icon ci-green"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+        <div class="channel-title">WhatsApp</div>
+        <div class="channel-desc" data-i18n="ch2_desc">Flujos conversacionales nativos via Yalo Studio. Inicio de jornada, check-in de visitas, consulta de metas y recordatorios.</div>
+      </div>
+      <div class="channel-card reveal reveal-d3">
+        <div class="channel-icon ci-purple"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <div class="channel-title" data-i18n="ch3_title">Centro de Mando</div>
+        <div class="channel-desc" data-i18n="ch3_desc">Panel administrativo para supervisores. Dashboards de desempeño, carga de rutas y metas, reportes exportables.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA (Dark cosmic) ========== -->
+<section class="cta-section" id="cta">
+  <div class="cosmic-bg">
+    <div class="stars"></div>
+  </div>
+  <div class="cta-glow cta-glow-1"></div>
+  <div class="cta-glow cta-glow-2"></div>
+  <div class="cta-content">
+    <div class="section-tag section-tag-dark reveal" data-i18n="cta_tag">Comienza Ahora</div>
+    <h2 class="section-title reveal reveal-d1" style="color:var(--white);">
+      <span data-i18n="cta_title_1">Lleva a tu equipo de campo</span><br>
+      <span class="gradient-text" data-i18n="cta_title_2">al siguiente nivel</span>
+    </h2>
+    <p class="section-desc reveal reveal-d2" style="color:var(--text-muted);max-width:500px;margin:0 auto 2.5rem;text-align:center;" data-i18n="cta_desc">
+      Agenda una demo personalizada y descubre cómo Sales Mate puede orquestar tus operaciones de campo.
+    </p>
+    <!-- CTA button removed -->
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo">
+      <svg width="76" height="36" viewBox="0 0 76 36" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50.2644 0.180664H44.4412V26.2813H50.2702V0.180664H50.2644Z" fill="white"/><path d="M33.5053 5.63477C27.2545 5.63477 24.7877 8.65037 24.2909 12.856H29.8946C30.4203 11.1114 31.5642 10.4412 33.2569 10.4412C35.4752 10.4412 36.3938 11.6371 36.3938 13.8035V14.6527H31.1656C25.8392 14.6527 23.667 17.1657 23.667 20.8283C23.667 24.7856 26.3071 26.7036 29.7964 26.7036C33.2106 26.7036 35.4983 25.8544 36.3938 22.4228V26.2819H42.1708V13.7515C42.1708 8.59838 39.6347 5.63477 33.5053 5.63477ZM36.3938 18.5349C36.3938 20.5742 34.7762 22.0242 32.3094 22.0242C30.091 22.0242 29.3227 21.0536 29.3227 19.8058C29.3227 18.7082 30.3452 17.9398 32.0379 17.9398H36.3707V18.5349H36.3938Z" fill="white"/><path d="M63.4418 5.68582C60.6515 5.55873 57.9363 6.53504 55.8681 8.42413C53.7999 10.319 52.581 12.9302 52.4308 15.7205L52.3788 26.2578L62.9161 26.7546C64.2852 26.7546 65.6775 26.5062 66.9484 25.9574C68.2194 25.4317 69.3863 24.6633 70.3858 23.6928C71.3563 22.7223 72.1535 21.5495 72.6793 20.2786C73.205 19.0076 73.4996 17.6385 73.4996 16.2462C73.5227 13.531 72.4771 10.914 70.6111 8.94984C68.722 6.97987 66.157 5.80714 63.4418 5.68582ZM66.2032 19.4814C65.354 20.3537 64.187 20.8505 62.9623 20.8736L58.2078 20.6483L58.2309 15.8649C58.306 14.6922 58.8317 13.5715 59.6983 12.7742C60.5706 11.977 61.6913 11.5264 62.8872 11.5264C62.9623 11.5264 63.0374 11.5264 63.1125 11.5264C64.3083 11.5784 65.4522 12.0983 66.2783 12.9706C67.0986 13.843 67.5724 15.0099 67.5724 16.2058C67.5493 17.4421 67.0524 18.609 66.2032 19.4814Z" fill="white"/><path d="M9.94658 27.0029C13.0835 27.0029 15.1286 25.8302 16.2724 24.4379L16.2955 26.2288C16.2955 29.0653 14.7993 30.7118 12.2112 30.7118C10.6167 30.7118 9.9928 30.1861 9.51908 29.0942H3.39544C3.69584 30.342 4.36598 32.0578 5.81023 33.427C7.47979 34.9983 9.77327 35.8187 12.6329 35.8187C15.4463 35.8187 17.8149 34.9001 19.4787 33.1786C21.0731 31.509 21.9455 29.2444 21.9455 26.5812V6.65625H16.1222V17.2398C16.1222 18.4876 15.7756 19.4581 15.0997 20.1514C15.0766 20.1745 15.0477 20.2265 15.0015 20.2496C14.9784 20.2727 14.9264 20.3247 14.9033 20.3478L14.8802 20.3709C14.8282 20.394 14.8051 20.446 14.7531 20.4691C14.7011 20.4922 14.678 20.5211 14.626 20.5673C13.9501 21.0641 13.0546 21.3414 11.9628 21.3414C10.2701 21.3414 9.24756 20.6713 8.69875 19.5737C8.37523 18.9266 8.22503 18.1294 8.22503 17.2571V6.67936H2.5V18.1121C2.55199 23.4443 5.38851 27.0029 9.94658 27.0029Z" fill="white"/></svg>
+      <span class="footer-logo-sub">Sales Mate</span>
+    </div>
+    <div class="footer-text">© 2026 Sales Mate. <span data-i18n="footer_rights">Todos los derechos reservados.</span></div>
+    <div class="footer-yalo"><span data-i18n="footer_by">Desarrollado por</span> <a href="https://yalo.com" target="_blank" rel="noopener">Yalo</a></div>
+  </div>
+</footer>
+
+<script>
+// ============================
+// i18n Translations
+// ============================
+const translations = {
+  es: {
+    nav_problem: 'Oportunidad',
+    nav_journey: 'Jornada',
+    nav_features: 'Funcionalidades',
+    nav_channels: 'Canales',
+    hero_tag: 'Desarrollado por Yalo',
+    hero_title_1: 'Orquestación',
+    hero_title_2: 'Inteligente',
+    hero_title_3: 'de Ventas en Campo',
+    hero_desc: 'Unifica la estrategia comercial, automatiza tareas de campo y gana visibilidad en tiempo real. El orquestador que conecta metas con ejecución para equipos CPG enterprise.',
+    hero_cta: 'Solicitar Demo →',
+    hero_cta2: 'Conocer más',
+    card_title: 'Plan del Día',
+    card_subtitle: '8 tiendas · 12 misiones',
+    card_badge: 'EN RUTA',
+    metric_exec: 'Ejecución',
+    metric_visits: 'Visitas',
+    metric_sellout: 'Sell-out',
+    task_1: 'Verificar exhibición',
+    task_2: 'Pedido sugerido',
+    task_3: 'Activar promo combo',
+    status_done: 'HECHO',
+    status_progress: 'EN CURSO',
+    status_pending: 'PENDIENTE',
+    fb1_title: 'AI Photo Verify',
+    fb1_sub: 'Validación automática',
+    fb2_sub: 'Canal nativo',
+    problem_tag: 'La Oportunidad',
+    problem_title: '¿Y si cada visita de campo<br>generara el máximo impacto?',
+    problem_desc: 'Los equipos enterprise gestionan múltiples apps y procesos manuales con visibilidad limitada. Sales Mate unifica todo en una experiencia inteligente.',
+    pain1_title: 'Múltiples Herramientas',
+    pain1_desc: 'Vendedores gestionan hasta 8 apps diferentes. Una experiencia unificada simplifica su jornada completa.',
+    pain2_title: 'Procesos Manuales',
+    pain2_desc: 'Metas comunicadas por PDF, seguimiento en Excel. Una plataforma integrada elimina la fricción operativa.',
+    pain3_title: 'Visibilidad Limitada',
+    pain3_desc: 'Sin cruce entre ventas, visitas y promociones activas. Con datos conectados, las decisiones se toman a tiempo.',
+    pain4_title: 'Adopción Compleja',
+    pain4_desc: 'Los vendedores de campo necesitan simplicidad. Una sola herramienta intuitiva maximiza la adopción.',
+    stat1_num: '8+', stat1_label: 'Apps que reemplaza',
+    stat2_num: '3', stat2_label: 'Canales unificados',
+    stat3_num: '100%', stat3_label: 'Visibilidad en tiempo real',
+    stat4_num: 'AI', stat4_label: 'Validación con visión artificial',
+    nav_demo: 'Demo',
+    demo_tag: 'Demo en Vivo',
+    demo_title: 'Mira Sales Mate<br>en acción',
+    demo_desc: 'Descubre cómo nuestro orquestador inteligente transforma la ejecución diaria de los equipos de campo.',
+    demo_label: 'Video / GIF de Demo',
+    demo_sublabel: 'Arrastra tu archivo aquí o haz clic para cargar',
+    journey_tag: 'Jornada Completa',
+    journey_title_1: 'De la estrategia al',
+    journey_title_2: 'resultado de negocio',
+    journey_desc: 'Sales Mate orquesta todo el flujo: desde los objetivos corporativos hasta la ejecución validada en cada punto de venta.',
+    j1_label: 'Embotelladora',
+    j1_title: 'Estrategia & Gobernanza',
+    j1_desc: 'Misiones de ventas, ejecución y comunicación. Objetivos macro y reglas por vendedor.',
+    j2_title: 'Orquestación Inteligente',
+    j2_desc: 'Genera tareas por tienda y vendedor. Prioriza por impacto y reglas de negocio.',
+    j3_label: 'Vendedor / App',
+    j3_title: 'Plan de Campo',
+    j3_desc: 'Visualiza tareas priorizadas. Ejecuta por tienda con evidencias en el PDV.',
+    j4_label: 'Supervisor',
+    j4_title: 'Control & Performance',
+    j4_desc: 'Monitorea ejecución y resultados. Validación automática + auditoría manual.',
+    j5_title: 'Resultado de Negocio',
+    j5_desc: 'Ejecución consistente, rastreabilidad punta a punta y aprendizaje continuo.',
+    features_tag: 'Funcionalidades',
+    features_title: 'Inteligencia que potencia<br>cada acción en campo',
+    f1_title: 'Motor de Priorización Inteligente',
+    f1_desc: 'Algoritmo que recibe candidatas de tareas, las puntúa por impacto y asigna el conjunto óptimo a cada vendedor según reglas de capacidad y perfil de tienda.',
+    f2_title: 'Verificación con AI Vision',
+    f2_desc: 'Validación automática de fotos en punto de venta con OpenAI y Google Gemini. Multi-proveedor con tracking de costos.',
+    f3_title: 'Dashboards en Tiempo Real',
+    f3_desc: 'Visibilidad instantánea de metas, visitas, ejecución y sell-out. Reportes por distribuidor, vendedor y tienda.',
+    f4_title: 'Gamificación',
+    f4_desc: 'Sistema de puntos y logros que motiva a los vendedores a completar misiones de alto impacto.',
+    f5_title: 'Whitelabel',
+    f5_desc: 'Cada marca despliega su propia experiencia con branding, colores e identidad totalmente personalizados.',
+    f6_title: 'Multiidioma',
+    f6_desc: 'Soporte nativo en Español, Inglés y Portugués brasileño. Listo para operaciones en toda LATAM.',
+    channels_tag: 'Canales',
+    channels_title_1: 'Donde tu equipo',
+    channels_title_2: 'ya trabaja',
+    channels_desc: 'Sales Mate no agrega otra app. Se integra en los canales que los vendedores ya usan, reduciendo fricción y maximizando adopción.',
+    ch1_title: 'WebView / PWA',
+    ch1_desc: 'Aplicación web progresiva embebible en cualquier app existente. Gestión de rutas, misiones guiadas y captura de fotos.',
+    ch2_desc: 'Flujos conversacionales nativos via Yalo Studio. Inicio de jornada, check-in de visitas, consulta de metas y recordatorios.',
+    ch2_tag: 'Conversacional',
+    ch3_title: 'Centro de Mando',
+    ch3_desc: 'Panel administrativo para supervisores. Dashboards de desempeño, carga de rutas y metas, reportes exportables.',
+    cta_tag: 'Comienza Ahora',
+    cta_title_1: 'Lleva a tu equipo de campo',
+    cta_title_2: 'al siguiente nivel',
+    cta_desc: 'Agenda una demo personalizada y descubre cómo Sales Mate puede orquestar tus operaciones de campo.',
+    cta_btn: 'Solicitar Demo →',
+    footer_rights: 'Todos los derechos reservados.',
+    footer_by: 'Desarrollado por',
+  },
+  en: {
+    nav_problem: 'Opportunity',
+    nav_journey: 'Journey',
+    nav_features: 'Features',
+    nav_channels: 'Channels',
+    hero_tag: 'Powered by Yalo',
+    hero_title_1: 'Intelligent',
+    hero_title_2: 'Orchestration',
+    hero_title_3: 'for Field Sales',
+    hero_desc: 'Unify your commercial strategy, automate field tasks and gain real-time visibility. The orchestrator that connects goals with execution for enterprise CPG teams.',
+    hero_cta: 'Request a Demo →',
+    hero_cta2: 'Learn more',
+    card_title: 'Daily Plan',
+    card_subtitle: '8 stores · 12 missions',
+    card_badge: 'ON ROUTE',
+    metric_exec: 'Execution',
+    metric_visits: 'Visits',
+    metric_sellout: 'Sell-out',
+    task_1: 'Verify display',
+    task_2: 'Suggested order',
+    task_3: 'Activate promo combo',
+    status_done: 'DONE',
+    status_progress: 'IN PROGRESS',
+    status_pending: 'PENDING',
+    fb1_title: 'AI Photo Verify',
+    fb1_sub: 'Auto-validation',
+    fb2_sub: 'Native channel',
+    problem_tag: 'The Opportunity',
+    problem_title: 'What if every field visit<br>drove maximum impact?',
+    problem_desc: 'Enterprise teams manage multiple apps and manual processes with limited visibility. Sales Mate unifies everything into one intelligent experience.',
+    pain1_title: 'Multiple Tools',
+    pain1_desc: 'Reps manage up to 8 different apps. A unified experience simplifies their entire workday.',
+    pain2_title: 'Manual Processes',
+    pain2_desc: 'Goals shared via PDF, tracking in Excel. An integrated platform eliminates operational friction.',
+    pain3_title: 'Limited Visibility',
+    pain3_desc: 'No cross-reference between sales, visits and active promotions. With connected data, decisions happen in real time.',
+    pain4_title: 'Complex Adoption',
+    pain4_desc: 'Field reps need simplicity. A single intuitive tool maximizes adoption.',
+    stat1_num: '8+', stat1_label: 'Apps replaced',
+    stat2_num: '3', stat2_label: 'Unified channels',
+    stat3_num: '100%', stat3_label: 'Real-time visibility',
+    stat4_num: 'AI', stat4_label: 'Computer vision validation',
+    nav_demo: 'Demo',
+    demo_tag: 'Live Demo',
+    demo_title: 'See Sales Mate<br>in action',
+    demo_desc: 'Discover how our intelligent orchestrator transforms the daily execution of field teams.',
+    demo_label: 'Demo Video / GIF',
+    demo_sublabel: 'Drag your file here or click to upload',
+    journey_tag: 'Full Journey',
+    journey_title_1: 'From strategy to',
+    journey_title_2: 'business results',
+    journey_desc: 'Sales Mate orchestrates the entire flow: from corporate objectives to validated execution at every point of sale.',
+    j1_label: 'Bottler',
+    j1_title: 'Strategy & Governance',
+    j1_desc: 'Sales, execution and communication missions. Macro objectives and rules per rep.',
+    j2_title: 'Intelligent Orchestration',
+    j2_desc: 'Generates tasks per store and rep. Prioritizes by impact and business rules.',
+    j3_label: 'Sales Rep / App',
+    j3_title: 'Field Plan',
+    j3_desc: 'View prioritized tasks. Execute per store with evidence at the POS.',
+    j4_label: 'Supervisor',
+    j4_title: 'Control & Performance',
+    j4_desc: 'Monitor execution and results. Automatic validation + manual audit.',
+    j5_title: 'Business Results',
+    j5_desc: 'Consistent execution, end-to-end traceability and continuous learning.',
+    features_tag: 'Features',
+    features_title: 'Intelligence that powers<br>every action in the field',
+    f1_title: 'Intelligent Prioritization Engine',
+    f1_desc: 'Algorithm that receives task candidates, scores them by impact and assigns the optimal set to each rep based on capacity rules and store profile.',
+    f2_title: 'AI Vision Verification',
+    f2_desc: 'Automatic POS photo validation with OpenAI and Google Gemini. Multi-provider with cost tracking.',
+    f3_title: 'Real-Time Dashboards',
+    f3_desc: 'Instant visibility into goals, visits, execution and sell-out. Reports by distributor, rep and store.',
+    f4_title: 'Gamification',
+    f4_desc: 'Points and achievements system that motivates reps to complete high-impact missions.',
+    f5_title: 'Whitelabel',
+    f5_desc: 'Each brand deploys its own experience with fully customized branding, colors and identity.',
+    f6_title: 'Multi-language',
+    f6_desc: 'Native support in Spanish, English and Brazilian Portuguese. Ready for LATAM-wide operations.',
+    channels_tag: 'Channels',
+    channels_title_1: 'Where your team',
+    channels_title_2: 'already works',
+    channels_desc: "Sales Mate doesn't add another app. It integrates into the channels reps already use, reducing friction and maximizing adoption.",
+    ch1_title: 'WebView / PWA',
+    ch1_desc: 'Progressive web app embeddable in any existing app. Route management, guided missions and photo capture.',
+    ch2_desc: 'Native conversational flows via Yalo Studio. Shift start, visit check-in, goal queries and reminders.',
+    ch2_tag: 'Conversational',
+    ch3_title: 'Command Center',
+    ch3_desc: 'Admin panel for supervisors. Performance dashboards, route and goal uploads, exportable reports.',
+    cta_tag: 'Get Started',
+    cta_title_1: 'Take your field team',
+    cta_title_2: 'to the next level',
+    cta_desc: 'Schedule a personalized demo and discover how Sales Mate can orchestrate your field operations.',
+    cta_btn: 'Request a Demo →',
+    footer_rights: 'All rights reserved.',
+    footer_by: 'Powered by',
+  },
+  pt: {
+    nav_problem: 'Oportunidade',
+    nav_journey: 'Jornada',
+    nav_features: 'Funcionalidades',
+    nav_channels: 'Canais',
+    hero_tag: 'Desenvolvido pela Yalo',
+    hero_title_1: 'Orquestração',
+    hero_title_2: 'Inteligente',
+    hero_title_3: 'de Vendas em Campo',
+    hero_desc: 'Unifique a estratégia comercial, automatize tarefas de campo e ganhe visibilidade em tempo real. O orquestrador que conecta metas com execução para equipes CPG enterprise.',
+    hero_cta: 'Solicitar Demo →',
+    hero_cta2: 'Saiba mais',
+    card_title: 'Plano do Dia',
+    card_subtitle: '8 lojas · 12 missões',
+    card_badge: 'EM ROTA',
+    metric_exec: 'Execução',
+    metric_visits: 'Visitas',
+    metric_sellout: 'Sell-out',
+    task_1: 'Verificar exposição',
+    task_2: 'Pedido sugerido',
+    task_3: 'Ativar promo combo',
+    status_done: 'FEITO',
+    status_progress: 'EM ANDAMENTO',
+    status_pending: 'PENDENTE',
+    fb1_title: 'AI Photo Verify',
+    fb1_sub: 'Validação automática',
+    fb2_sub: 'Canal nativo',
+    problem_tag: 'A Oportunidade',
+    problem_title: 'E se cada visita de campo<br>gerasse o máximo impacto?',
+    problem_desc: 'Equipes enterprise gerenciam múltiplos apps e processos manuais com visibilidade limitada. Sales Mate unifica tudo em uma experiência inteligente.',
+    pain1_title: 'Múltiplas Ferramentas',
+    pain1_desc: 'Vendedores gerenciam até 8 apps diferentes. Uma experiência unificada simplifica toda a jornada.',
+    pain2_title: 'Processos Manuais',
+    pain2_desc: 'Metas comunicadas por PDF, acompanhamento em Excel. Uma plataforma integrada elimina a fricção operacional.',
+    pain3_title: 'Visibilidade Limitada',
+    pain3_desc: 'Sem cruzamento entre vendas, visitas e promoções ativas. Com dados conectados, as decisões acontecem em tempo real.',
+    pain4_title: 'Adoção Complexa',
+    pain4_desc: 'Vendedores de campo precisam de simplicidade. Uma única ferramenta intuitiva maximiza a adoção.',
+    stat1_num: '8+', stat1_label: 'Apps substituídos',
+    stat2_num: '3', stat2_label: 'Canais unificados',
+    stat3_num: '100%', stat3_label: 'Visibilidade em tempo real',
+    stat4_num: 'AI', stat4_label: 'Validação com visão computacional',
+    nav_demo: 'Demo',
+    demo_tag: 'Demo ao Vivo',
+    demo_title: 'Veja o Sales Mate<br>em ação',
+    demo_desc: 'Descubra como nosso orquestrador inteligente transforma a execução diária das equipes de campo.',
+    demo_label: 'Vídeo / GIF de Demo',
+    demo_sublabel: 'Arraste seu arquivo aqui ou clique para carregar',
+    journey_tag: 'Jornada Completa',
+    journey_title_1: 'Da estratégia ao',
+    journey_title_2: 'resultado de negócio',
+    journey_desc: 'Sales Mate orquestra todo o fluxo: dos objetivos corporativos à execução validada em cada ponto de venda.',
+    j1_label: 'Engarrafadora',
+    j1_title: 'Estratégia & Governança',
+    j1_desc: 'Missões de vendas, execução e comunicação. Objetivos macro e regras por vendedor.',
+    j2_title: 'Orquestração Inteligente',
+    j2_desc: 'Gera tarefas por loja e vendedor. Prioriza por impacto e regras de negócio.',
+    j3_label: 'Vendedor / App',
+    j3_title: 'Plano de Campo',
+    j3_desc: 'Visualiza tarefas priorizadas. Executa por loja com evidências no PDV.',
+    j4_label: 'Supervisor',
+    j4_title: 'Controle & Performance',
+    j4_desc: 'Monitora execução e resultados. Validação automática + auditoria manual.',
+    j5_title: 'Resultado de Negócio',
+    j5_desc: 'Execução consistente, rastreabilidade ponta a ponta e aprendizado contínuo.',
+    features_tag: 'Funcionalidades',
+    features_title: 'Inteligência que potencializa<br>cada ação em campo',
+    f1_title: 'Motor de Priorização Inteligente',
+    f1_desc: 'Algoritmo que recebe candidatas de tarefas, pontua por impacto e atribui o conjunto ideal a cada vendedor com base em regras de capacidade e perfil de loja.',
+    f2_title: 'Verificação com AI Vision',
+    f2_desc: 'Validação automática de fotos no ponto de venda com OpenAI e Google Gemini. Multi-provedor com rastreamento de custos.',
+    f3_title: 'Dashboards em Tempo Real',
+    f3_desc: 'Visibilidade instantânea de metas, visitas, execução e sell-out. Relatórios por distribuidor, vendedor e loja.',
+    f4_title: 'Gamificação',
+    f4_desc: 'Sistema de pontos e conquistas que motiva os vendedores a completar missões de alto impacto.',
+    f5_title: 'Whitelabel',
+    f5_desc: 'Cada marca implanta sua própria experiência com branding, cores e identidade totalmente personalizados.',
+    f6_title: 'Multi-idioma',
+    f6_desc: 'Suporte nativo em Espanhol, Inglês e Português brasileiro. Pronto para operações em toda a LATAM.',
+    channels_tag: 'Canais',
+    channels_title_1: 'Onde sua equipe',
+    channels_title_2: 'já trabalha',
+    channels_desc: 'Sales Mate não adiciona mais um app. Se integra nos canais que os vendedores já usam, reduzindo fricção e maximizando adoção.',
+    ch1_title: 'WebView / PWA',
+    ch1_desc: 'Aplicação web progressiva integrável em qualquer app existente. Gestão de rotas, missões guiadas e captura de fotos.',
+    ch2_desc: 'Fluxos conversacionais nativos via Yalo Studio. Início de jornada, check-in de visitas, consulta de metas e lembretes.',
+    ch2_tag: 'Conversacional',
+    ch3_title: 'Centro de Comando',
+    ch3_desc: 'Painel administrativo para supervisores. Dashboards de desempenho, carga de rotas e metas, relatórios exportáveis.',
+    cta_tag: 'Comece Agora',
+    cta_title_1: 'Leve sua equipe de campo',
+    cta_title_2: 'ao próximo nível',
+    cta_desc: 'Agende uma demo personalizada e descubra como o Sales Mate pode orquestrar suas operações de campo.',
+    cta_btn: 'Solicitar Demo →',
+    footer_rights: 'Todos os direitos reservados.',
+    footer_by: 'Desenvolvido pela',
+  }
+};
+
+function setLanguage(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.documentElement.setAttribute('lang', lang);
+  const t = translations[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = t[key];
+      } else {
+        el.innerHTML = t[key];
+      }
+    }
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+}
+
+// Language switcher
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang')));
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Mobile nav
+document.getElementById('navToggle').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>
